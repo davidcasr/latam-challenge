@@ -1,17 +1,17 @@
-# Use an official Python runtime as a parent image
+# Usa una imagen oficial de Python
 FROM python:3.9-slim
 
-# Set the working directory
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copia los archivos al contenedor
 COPY . .
 
-# Install any needed packages specified in requirements.txt
+# Instala las dependencias
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Expose the port that the app runs on
+# Expone el puerto 8080
 EXPOSE 8080
 
-# Run the app
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080"]
+# Ejecuta el servidor de FastAPI
+CMD ["python", "challenge/api.py"]
