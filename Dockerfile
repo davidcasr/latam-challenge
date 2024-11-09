@@ -1,10 +1,10 @@
 # Usa una imagen oficial de Python
 FROM python:3.9-slim
 
-# Establece el directorio de trabajo
-WORKDIR /app
+# Establece el directorio de trabajo en la raíz del proyecto
+WORKDIR /
 
-# Copia los archivos al contenedor
+# Copia todo el contenido del proyecto al contenedor
 COPY . .
 
 # Instala las dependencias
