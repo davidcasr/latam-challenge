@@ -15,7 +15,8 @@ class DelayModel:
     def preprocess(
         self,
         data: pd.DataFrame,
-        target_column: str = None
+        target_column: str = None,
+        is_training: bool = True
     ) -> Union[Tuple[pd.DataFrame, pd.DataFrame], pd.DataFrame]:
         """
         Prepare raw data for training or prediction.
@@ -29,12 +30,13 @@ class DelayModel:
             or
             pd.DataFrame: features.
         """
-        # Apply the function to calculate 'delay' and 'min_diff'
-        data = get_delay(data)
+        if is_training:
+            # Apply the function to calculate 'delay' and 'min_diff'
+            data = get_delay(data)
 
-        # Ensure the 'delay' column is present if specified
-        if target_column and target_column not in data.columns:
-            raise ValueError(f"The specified target column '{target_column}' is not in the DataFrame.")
+            # Ensure the 'delay' column is present if specified
+            if target_column and target_column not in data.columns:
+                raise ValueError(f"The specified target column '{target_column}' is not in the DataFrame.")
 
         # Select the top 10 most important features as per data analysis
         top_features = [
