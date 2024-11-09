@@ -1,11 +1,14 @@
-# Usa una imagen oficial de Python
+# Usa una imagen oficial de Python como base
 FROM python:3.9-slim
 
 # Establece el directorio de trabajo en la raíz del proyecto
-WORKDIR /
+WORKDIR /app
 
 # Copia todo el contenido del proyecto al contenedor
-COPY . .
+COPY . /app
+
+# Configura el PYTHONPATH para incluir el directorio de trabajo
+ENV PYTHONPATH="/app"
 
 # Instala las dependencias
 RUN pip install --upgrade pip && pip install -r requirements.txt
